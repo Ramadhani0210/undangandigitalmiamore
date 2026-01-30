@@ -2,57 +2,47 @@
 <html lang="id">
 <head>
   <meta charset="UTF-8">
-  <title>Undangan Digital</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Undangan Digital</title>
 
   <style>
     body {
       margin: 0;
       background: black;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      height: 100vh;
     }
     video {
       width: 100%;
-      max-width: 480px;
-      height: auto;
+      height: 100vh;
+      object-fit: cover;
     }
-    .error {
-      color: white;
-      font-family: Arial, sans-serif;
+    .nama {
+      position: absolute;
+      bottom: 10%;
+      width: 100%;
       text-align: center;
+      color: white;
+      font-size: 24px;
+      font-family: Arial, sans-serif;
     }
   </style>
 </head>
 
 <body>
 
-  <video id="videoPlayer" controls autoplay playsinline></video>
+  <video autoplay muted loop playsinline>
+    <source src="video.mp4" type="video/mp4">
+  </video>
 
-  <div id="error" class="error" style="display:none;">
-    Video undangan tidak ditemukan
-  </div>
+  <div class="nama" id="nama"></div>
 
   <script>
     const params = new URLSearchParams(window.location.search);
-    const videoName = params.get("video");
+    const nama = params.get("nama");
 
-    const videoPlayer = document.getElementById("videoPlayer");
-    const errorBox = document.getElementById("error");
-
-    if (videoName) {
-      videoPlayer.src = "undangan/video/" + videoName + ".mp4";
-    } else {
-      videoPlayer.style.display = "none";
-      errorBox.style.display = "block";
+    if (nama) {
+      document.getElementById("nama").innerText =
+        "Kepada Yth: " + nama;
     }
-
-    videoPlayer.onerror = function () {
-      videoPlayer.style.display = "none";
-      errorBox.style.display = "block";
-    };
   </script>
 
 </body>
