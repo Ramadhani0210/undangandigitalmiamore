@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <title>Undangan Digital</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <style>
+    body {
+      margin: 0;
+      background: black;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+    }
+    video {
+      width: 100%;
+      max-width: 480px;
+      height: auto;
+    }
+    .error {
+      color: white;
+      font-family: Arial, sans-serif;
+      text-align: center;
+    }
+  </style>
+</head>
+
+<body>
+
+  <video id="videoPlayer" controls autoplay playsinline></video>
+
+  <div id="error" class="error" style="display:none;">
+    Video undangan tidak ditemukan
+  </div>
+
+  <script>
+    const params = new URLSearchParams(window.location.search);
+    const videoName = params.get("video");
+
+    const videoPlayer = document.getElementById("videoPlayer");
+    const errorBox = document.getElementById("error");
+
+    if (videoName) {
+      videoPlayer.src = "undangan/" + videoName + ".mp4";
+    } else {
+      videoPlayer.style.display = "none";
+      errorBox.style.display = "block";
+    }
+
+    videoPlayer.onerror = function () {
+      videoPlayer.style.display = "none";
+      errorBox.style.display = "block";
+    };
+  </script>
+
+</body>
+</html>
