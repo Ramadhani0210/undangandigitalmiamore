@@ -56,7 +56,6 @@
 
   <div class="reels">
     <video id="player" autoplay muted loop playsinline></video>
-    <button class="sound-btn" onclick="toggleSound()">🔊</button>
   </div>
 
   <script>
@@ -66,11 +65,6 @@
 
     const video = document.getElementById("player");
     video.src = `video${v}.mp4`;
-
-    // Toggle suara
-    function toggleSound() {
-      video.muted = !video.muted;
-    }
   </script>
 
 </body>
